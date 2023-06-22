@@ -127,18 +127,3 @@ button.dark-mode {
   top: 3.75rem;
   right: 3.75rem;
 }
-
-@media (min-width: 48em) {
-  main {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    place-items: center;
-  }
-
-  .light-mode-button,
-  .dark-mode-button {
-    position: absolute;
-    top: 3.75rem;
-    right: 3.75rem;
-  }
-}
