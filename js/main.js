@@ -22,13 +22,17 @@ const rainSound = new Audio("./audios/rain.wav")
 const coffeeShopSound = new Audio("./audios/coffee-shop.wav")
 const fireplaceSound = new Audio("./audios/fireplace.wav")
 
+/* Light Mode Buttons */
+const lightModeButton = document.querySelector(".light-mode-button")
+const darkModeButton = document.querySelector(".dark-mode-button")
+
 /* Timer Functions */
 function countdown() {
   timerTimeOut = setTimeout(function () {
     let seconds = Number(secondsDisplay.textContent)
     let minutes = Number(minutesDisplay.textContent)
 
-    if (minutes == 0 && seconds <= 1) {
+    if (minutes == 0 && seconds <= 0) {
       return
     }
 
@@ -48,11 +52,11 @@ function updateDisplay(minutes, seconds) {
   secondsDisplay.textContent = seconds
 
   if (seconds < 10) {
-    secondsDisplay.textContent = "0${seconds}"
+    secondsDisplay.textContent = `0${seconds}`
   }
 
   if (minutes < 10) {
-    minutesDisplay.textContent = "0${minutes}"
+    minutesDisplay.textContent = `0${minutes}`
   }
 }
 
@@ -93,41 +97,59 @@ function playSound(sound) {
   sound.loop = true
 }
 
-function pauseSound(sound) {
-  sound.pause()
+function pauseSound(pause) {
+  forestSound.pause()
+  rainSound.pause()
+  coffeeShopSound.pause()
+  fireplaceSound.pause()
 }
 
 function checkIfSoundActive(element) {
+  element.classList.toggle("active")
   if (element.classList.contains("active")) {
-    element.classList.remove("active")
-    return
-  } else {
-    element.classList.add("active")
-    return
+    console.log("is not active")
+    pauseSound()
   }
 }
 
 /* Sound events */
 buttonForest.addEventListener("click", () => {
-  checkIfSoundActive(buttonForest) 
-  pauseSound(forestSound)
+  pauseSound()
   playSound(forestSound)
+  checkIfSoundActive(buttonForest)
 })
 
 buttonRain.addEventListener("click", () => {
-  checkIfSoundActive(buttonRain)
-  pauseSound(rainSound)
+  pauseSound()
   playSound(rainSound)
+  checkIfSoundActive(buttonRain)
 })
 
 buttonCoffeeShop.addEventListener("click", () => {
-  checkIfSoundActive(buttonCoffeeShop)
-  pauseSound(coffeeShopSound)
+  pauseSound()
   playSound(coffeeShopSound)
+  checkIfSoundActive(buttonCoffeeShop)
 })
 
 buttonFireplace.addEventListener("click", () => {
-  checkIfSoundActive(buttonFireplace)
-  pauseSound(fireplaceSound)
+  pauseSound()
   playSound(fireplaceSound)
+  checkIfSoundActive(buttonFireplace)
+})
+
+/* Light mode function */
+function toggleLightMode() {
+  document.body.classList.toggle("light-mode")
+
+  darkModeButton.toggleAttribute("hidden")
+  lightModeButton.toggleAttribute("hidden")
+}
+
+/* Light mode events */
+lightModeButton.addEventListener("click", () => {
+  toggleLightMode()
+})
+
+darkModeButton.addEventListener("click", () => {
+  toggleLightMode()
 })
