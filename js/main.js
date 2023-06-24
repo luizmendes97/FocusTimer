@@ -21,6 +21,10 @@ const forestSound = new Audio("./audios/forest.wav")
 const rainSound = new Audio("./audios/rain.wav")
 const coffeeShopSound = new Audio("./audios/coffee-shop.wav")
 const fireplaceSound = new Audio("./audios/fireplace.wav")
+const forestVolumeSlider = document.querySelector("#forestVolume")
+const rainVolumeSlider = document.querySelector("#rainVolume")
+const coffeeShopVolumeSlider = document.querySelector("#coffeeShopVolume")
+const fireplaceVolumeSlider = document.querySelector("#fireplaceVolume")
 
 /* Light Mode Buttons */
 const lightModeButton = document.querySelector(".light-mode-button")
@@ -112,6 +116,10 @@ function checkIfSoundActive(element) {
   }
 }
 
+function changeVolume(sound, volume) {
+  sound.volume = volume
+}
+
 /* Sound events */
 buttonForest.addEventListener("click", () => {
   pauseSound()
@@ -137,9 +145,25 @@ buttonFireplace.addEventListener("click", () => {
   checkIfSoundActive(buttonFireplace)
 })
 
+forestVolumeSlider.addEventListener("change", () => {
+  changeVolume(forestSound, forestVolumeSlider.value)
+})
+
+rainVolumeSlider.addEventListener("change", () => {
+  changeVolume(rainSound, rainVolumeSlider.value)
+})
+
+coffeeShopVolumeSlider.addEventListener("change", () => {
+  changeVolume(coffeeShopSound, coffeeShopVolumeSlider.value)
+})
+
+fireplaceVolumeSlider.addEventListener("change", () => {
+  changeVolume(fireplaceSound, fireplaceVolumeSlider.value)
+})
+
 /* Light mode function */
 function toggleLightMode() {
-  document.body.classList.toggle("light-mode")
+  document.body.classList.toggle("dark-mode")
 
   darkModeButton.toggleAttribute("hidden")
   lightModeButton.toggleAttribute("hidden")

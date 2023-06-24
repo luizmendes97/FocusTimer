@@ -6,21 +6,15 @@
 
 :root {
   font-size: 62.5%;
-  --bg-color-light-mode: #ffffff;
+  --bg-color-mode: #ffffff;
   --text-color-light-mode: #323238;
-  --card-color-light-mode: #e1e1e6;
-  --card-color-active-light-mode: #02799d;
-}
-
-.light {
-  opacity: 0;
-}
-
-.dark-mode {
-  --bg-color-dark-mode: #121214;
   --text-color-dark-mode: #ffffff;
-  --card-color-dark-mode: #29292e;
-  --card-color-active-dark-mode: #0a3442;
+  --card-color-light-mode: #e1e1e6;
+  --card-color-dark-mode: #FFFFFF;
+  --card-color-active-light-mode: #02799d;
+  --card-color-active-dark-mode: #72f308;
+  --bg-color-dark-mode: #121214;
+  --dark-mode-fill: #0a3442;
 }
 
 main {
@@ -33,31 +27,9 @@ body {
   background-color: var(--bg-color-light-mode);
   font-family: "Roboto", sans-serif;
   height: 100vh;
-
+  
   display: grid;
   place-content: center;
-}
-
-body .dark-mode {
-  background-color: var(--bg-color-dark-mode);
-  font-family: "Roboto", sans-serif;
-  height: 100vh;
-
-  display: grid;
-  place-content: center;
-}
-
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-button.dark-mode {
-  background-color: #c4c4cc;
-  background: none;
-  border: none;
-  cursor: pointer;
 }
 
 #timer-and-controls {
@@ -75,20 +47,16 @@ button.dark-mode {
   margin-bottom: 1rem;
 }
 
-#timer.dark-mode {
-  font-weight: 500;
-  font-size: clamp(5rem, 5rem + 10vw, 12.617rem);
-  line-height: 14.785rem;
-  display: flex;
-  justify-content: center;
-  color: var(--text-color-dark-mode);
-  margin-bottom: 1rem;
-}
-
 #controls {
   display: flex;
   justify-content: center;
   gap: 4rem;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 #sounds {
@@ -105,7 +73,37 @@ button.dark-mode {
   height: 15.2rem;
 }
 
-#sounds button.dark-mode {
+#sounds button:hover {
+  background-color: var(--card-color-active-light-mode);
+}
+
+.dark-mode {
+  background-color: var(--bg-color-dark-mode);
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+
+  display: grid;
+  place-content: center;
+}
+
+.dark-mode .btn-play svg path,
+.dark-mode .btn-stop svg path,
+.dark-mode .btn-plus svg path,
+.dark-mode .btn-less svg path {
+  fill: var(--text-color-dark-mode);
+}
+
+.dark-mode #timer {
+  font-weight: 500;
+  font-size: clamp(5rem, 5rem + 10vw, 12.617rem);
+  line-height: 14.785rem;
+  display: flex;
+  justify-content: center;
+  color: var(--text-color-dark-mode);
+  margin-bottom: 1rem;
+}
+
+.dark-mode #sounds button {
   padding: 4.8rem 4.8rem 4.7rem 4.7rem;
   background-color: var(--card-color-dark-mode);
   border-radius: 2.4rem;
@@ -113,11 +111,8 @@ button.dark-mode {
   height: 15.2rem;
 }
 
-#sounds button:hover {
-  background-color: var(--card-color-active-light-mode);
-}
 
-#sounds button:hover .dark-mode {
+.dark-mode #sounds button:hover {
   background-color: var(--card-color-active-dark-mode);
 }
 
@@ -126,4 +121,24 @@ button.dark-mode {
   position: absolute;
   top: 3.75rem;
   right: 3.75rem;
+}
+
+input[type="range"] {
+  width: 150%;
+  height: 4px;
+  margin-top: 22px;
+  background-color: var(--text-color-light-mode);
+  appearance: none;
+  -webkit-appearance: none;
+  transition: background 3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  border: 1px solid var(--text-color-light-mode);
+  height: 16px;
+  width: 16px;
+  border-radius: 50px;
+  background: var(--text-color-light-mode);
+  cursor: pointer;
+  -webkit-appearance: none;
 }
